@@ -145,6 +145,12 @@ class WPILibVersioningPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
+        if (project.parent != null) {
+            if (project.parent.plugins.hasPlugin(WPILibVersioningPlugin)) {
+                return
+            }
+        }
+
         def extension = new WPILibVersioningPluginExtension(this, project)
         project.extensions.add("WPILibVersion", extension)
         def ext = (WPILibVersioningPluginExtension) project.extensions.getByName('WPILibVersion')
