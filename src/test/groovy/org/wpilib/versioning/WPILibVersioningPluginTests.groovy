@@ -1,4 +1,4 @@
-package edu.wpi.first.wpilib.versioning
+package org.wpilib.versioning
 
 import org.ajoberstar.grgit.Grgit
 import org.gradle.api.Project
@@ -235,7 +235,7 @@ class WPILibVersioningPluginTests {
 
     static def createProjectInstance() {
         def project = ProjectBuilder.builder().build()
-        project.pluginManager.apply 'edu.wpi.first.wpilib.versioning.WPILibVersioningPlugin'
+        project.pluginManager.apply 'org.wpilib.versioning.WPILibVersioningPlugin'
         return project
     }
 
@@ -248,7 +248,7 @@ class WPILibVersioningPluginTests {
         git.add(patterns: ['.gitignore'])
         git.commit(message: 'initial commit')
         def project = ProjectBuilder.builder().withProjectDir(tempDir.toFile()).build()
-        project.pluginManager.apply 'edu.wpi.first.wpilib.versioning.WPILibVersioningPlugin'
+        project.pluginManager.apply 'org.wpilib.versioning.WPILibVersioningPlugin'
         return new Tuple2<Grgit, Project>(git, project)
     }
 }
