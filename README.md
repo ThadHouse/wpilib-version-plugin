@@ -42,7 +42,7 @@ To use this plugin in your program with Gradle version >= 2.1, use the following
 ```gradle
 plugins {
   // NOTE: Substitute latest-version with the latest published version
-  id "org.wpilib.versioning.WPILibVersioningPlugin" version "latest-version"
+  id "org.wpilib.WPILibVersioningPlugin" version "latest-version"
 }
 ```
 
@@ -57,11 +57,11 @@ buildscript {
   }
   dependencies {
     // NOTE: Substitute latest-version with the latest published version
-    classpath "gradle.plugin.org.wpilib.versioning:wpilib-version-plugin:latest-version"
+    classpath "gradle.plugin.org.wpilib:wpilib-version-plugin:latest-version"
   }
 }
 
-apply plugin: "org.wpilib.versioning.WPILibVersioningPlugin"
+apply plugin: "org.wpilib.WPILibVersioningPlugin"
 ```
 
 This plugin introduces the following extension:

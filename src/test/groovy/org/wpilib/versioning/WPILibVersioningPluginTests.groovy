@@ -235,7 +235,7 @@ class WPILibVersioningPluginTests {
 
     static def createProjectInstance() {
         def project = ProjectBuilder.builder().build()
-        project.pluginManager.apply 'org.wpilib.versioning.WPILibVersioningPlugin'
+        project.pluginManager.apply 'org.wpilib.WPILibVersioningPlugin'
         return project
     }
 
@@ -248,7 +248,7 @@ class WPILibVersioningPluginTests {
         git.add(patterns: ['.gitignore'])
         git.commit(message: 'initial commit')
         def project = ProjectBuilder.builder().withProjectDir(tempDir.toFile()).build()
-        project.pluginManager.apply 'org.wpilib.versioning.WPILibVersioningPlugin'
+        project.pluginManager.apply 'org.wpilib.WPILibVersioningPlugin'
         return new Tuple2<Grgit, Project>(git, project)
     }
 }

@@ -28,7 +28,7 @@ gradlePlugin {
     vcsUrl = 'https://github.com/wpilibsuite/wpilib-version-plugin'
     plugins {
         wpilibVersionPlugin {
-            id = 'org.wpilib.versioning.WPILibVersioningPlugin'
+            id = 'org.wpilib.WPILibVersioningPlugin'
             displayName = 'WPILib Version Plugin'
             implementationClass = 'org.wpilib.versioning.WPILibVersioningPlugin'
             description = 'This plugin provides maven remote settings and versioning for the WPILib Suite FRC projects.'
