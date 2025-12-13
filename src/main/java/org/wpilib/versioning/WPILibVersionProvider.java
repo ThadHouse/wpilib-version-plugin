@@ -1,4 +1,4 @@
-package edu.wpi.first.wpilib.versioning;
+package org.wpilib.versioning;
 
 import java.util.List;
 
