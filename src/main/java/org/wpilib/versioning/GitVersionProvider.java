@@ -118,7 +118,7 @@ public class GitVersionProvider implements WPILibVersionProvider {
                 describe.setMatch(matchGlobs.toArray(String[]::new));
                 tag = describe.call();
 
-                List<GitTag> tags = git.tagList().call().stream().map(x -> new GitTag(git, x)).toList();
+                List<GitTag> tags = git.tagList().call().stream().map(x -> GitTag.fromRef(git, x)).filter(x -> x != null).toList();
 
                 GitTag describeTag = null;
 
