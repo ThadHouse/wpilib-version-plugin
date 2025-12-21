@@ -21,24 +21,32 @@ public class GitTag {
 
     private final ZonedDateTime dateTime;
 
-    public GitTag(Git git, Ref ref) {
-        name = Repository.shortenRefName(ref.getName());
+    public static GitTag fromRef(Git git, Ref ref) {
+        String name = Repository.shortenRefName(ref.getName());
 
         try (RevWalk walk = new RevWalk(git.getRepository())) {
             RevTag rev = walk.parseTag(ref.getObjectId());
             RevObject target = walk.peel(rev);
             walk.parseBody(rev.getObject());
-            commitId = ObjectId.toString(target);
+            String commitId = ObjectId.toString(target);
 
             Instant instant = rev.getTaggerIdent().getWhenAsInstant();
             ZoneId zone = rev.getTaggerIdent().getZoneId();
             if (zone == null) {
                 zone = ZoneOffset.UTC;
             }
-            dateTime = ZonedDateTime.ofInstant(instant, zone);
+            ZonedDateTime dateTime = ZonedDateTime.ofInstant(instant, zone);
+            return new GitTag(name, commitId, dateTime);
         } catch (IOException e) {
-            throw new RuntimeException("Error reading git tag " + name, e);
+            return null;
         }
+    }
+
+    private GitTag(String name, String commitId, ZonedDateTime dateTime) {
+        this.name = name;
+        this.commitId = commitId;
+        this.dateTime = dateTime;
+
     }
 
     public String getName() {
